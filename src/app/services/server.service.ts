@@ -3,6 +3,7 @@ import { io } from 'socket.io-client';
 import { UsuarioService } from './usuario.service';
 import { SalaBackend } from '../intefaces/sala';
 import { Subject } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 // Conexion al servidor con Node
 
@@ -11,7 +12,7 @@ import { Subject } from 'rxjs';
 })
 export class ServerService {
 
-  server = io("localhost:3000", {autoConnect:false});
+  server = io(environment.SERVER_URL, {autoConnect:false});
   usuarioService = inject(UsuarioService);
   
   actualizacionDeSala$ = new Subject<SalaBackend>();
